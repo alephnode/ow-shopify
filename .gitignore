@@ -1,0 +1,10 @@
+# build dir
+.cache
+dist
+assets
+
+# config dir
+config
+
+# config file
+config.yml
