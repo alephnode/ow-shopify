@@ -37,6 +37,7 @@
         .announcement-bar__message {
           color: {{ section.settings.color_text }};
         }
+
       </style>
 
       {% if section.settings.message_link == blank %}
@@ -106,9 +107,6 @@
 
       <div class="grid__item {% if section.settings.align_logo == 'left' %}medium-up--one-quarter{% else %}medium-up--one-third medium-up--push-one-third{% endif %} text-right site-header__icons{% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %}">
         <div class="site-header__icons-wrapper">
-          <div class="site-header__search site-header__icon">
-            {% include 'search-form' %}
-          </div>
 
           {% if shop.customer_accounts_enabled %}
             {% if customer %}

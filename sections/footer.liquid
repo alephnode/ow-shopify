@@ -55,6 +55,11 @@
     color: {{ section.settings.color_footer_text }};
   }
 
+  .footer-text {
+    text-align: center;
+    width: 100%;
+  }
+
   .site-footer a:hover {
     color: {{ footer_text_color_hover }};
   }
@@ -136,7 +141,7 @@
 
   <div class="page-width">
     <div class="grid grid--no-gutters small--text-center">
-      <div class="grid__item one-half small--one-whole">
+      <div class="footer-text grid__item one-whole small--one-whole">
         {%- if social_icons -%}
           <ul class="list--inline site-footer__social-icons social-icons site-footer__icon-list">
             {%- if settings.social_facebook_link != blank -%}
@@ -215,12 +220,12 @@
         {%- else -%}
           <div class="small--hide">
             <small class="site-footer__copyright-content">&copy;
-              {{ 'now' | date: "%Y" }},
+              {{ 'now' | date: "%Y" }}
               {{ shop.name | link_to: '/' }}</small>
         {%- endif -%}
       </div>
 
-      <div class="grid__item one-half small--one-whole">
+      <div class="grid__item one-whole small--one-whole">
         {% if section.settings.show_payment_icons %}
           <div class="grid__item site-footer__payment-icons">
             {% unless shop.enabled_payment_types == empty %}
@@ -238,10 +243,8 @@
       </div>
       <div class="grid__item{% unless social_icons %} medium-up--hide{% endunless %}">
         <small class="site-footer__copyright-content">&copy;
-          {{ 'now' | date: "%Y" }},
+          {{ 'now' | date: "%Y" }}
           {{ shop.name | link_to: '/' }}</small>
-        <small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small>
-      </div>
     </div>
   </div>
 </footer>

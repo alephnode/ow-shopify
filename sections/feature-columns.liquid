@@ -13,15 +13,15 @@
         {%- assign grid_item_width = 'medium-up--one-whole' -%}
         {%- assign max_height = 530 -%}
       {% when 2 %}
-        {%- assign grid_item_width = 'medium-up--one-half' -%}
+        {%- assign grid_item_width = 'medium-up--one-whole' -%}
         {%- assign max_height = 530 -%}
       {% when 4 %}
-        {%- assign grid_item_width = 'medium-up--one-half' -%}
+        {%- assign grid_item_width = 'medium-up--one-whole' -%}
         {%- assign max_height = 530 -%}
     {% endcase %}
     {% for block in section.blocks %}
       {% if section.blocks.size == 5 and forloop.index < 3 %}
-        {%- assign column_width = 'medium-up--one-half' -%}
+        {%- assign column_width = 'medium-up--one-whole' -%}
         {%- assign max_height = 530 -%}
       {% else %}
         {%- assign column_width = grid_item_width -%}
