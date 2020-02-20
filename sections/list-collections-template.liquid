@@ -6,6 +6,9 @@
   {%- assign blocks = section.blocks | sort: 'collection.all_products_count' -%}
 
   {% case section.settings.grid %}
+    {% when 1 %}
+      {%- assign max_height = 530 -%}
+      {%- assign grid_item_width = 'medium-up--one-whole' -%}
     {% when 2 %}
       {%- assign grid_item_width = 'medium-up--one-half' -%}
       {%- assign image_size = '530x' -%}
@@ -53,8 +56,8 @@
 </div>
 
 
-
 {% schema %}
+
 {
   "name": {
     "de": "Kategorien-Liste Seite",
@@ -83,8 +86,7 @@
         "zh-CN": "默认情况下列出您的所有产品系列。若要自定义列表，请选择“已选择”并添加产品系列。",
         "zh-TW": "系統預設會將您所有的商品系列都列入清單。如果想自訂清單，請點選「已選取」並新增商品系列。"
       }
-    },
-    {
+    }, {
       "type": "radio",
       "id": "display_type",
       "label": {
@@ -115,8 +117,7 @@
             "zh-CN": "所有",
             "zh-TW": "全部"
           }
-        },
-        {
+        }, {
           "value": "selected",
           "label": {
             "de": "Ausgewählt",
@@ -132,8 +133,7 @@
           }
         }
       ]
-    },
-    {
+    }, {
       "type": "select",
       "id": "sort",
       "label": {
@@ -176,8 +176,7 @@
             "zh-CN": "产品数量，从高到低",
             "zh-TW": "產品數量，從高到低"
           }
-        },
-        {
+        }, {
           "value": "products_low",
           "label": {
             "de": "Produktanzahl, niedrig zu hoch",
@@ -191,8 +190,7 @@
             "zh-CN": "产品数量，从低到高",
             "zh-TW": "產品數量，從低到高"
           }
-        },
-        {
+        }, {
           "value": "alphabetical",
           "label": {
             "de": "Alphabetisch, A-Z",
@@ -206,8 +204,7 @@
             "zh-CN": "按字母顺序排序，A-Z",
             "zh-TW": "依字母順序 A 到 Z"
           }
-        },
-        {
+        }, {
           "value": "alphabetical_reversed",
           "label": {
             "de": "Alphabetisch, Z-A",
@@ -221,8 +218,7 @@
             "zh-CN": "按字母顺序排序，Z-A",
             "zh-TW": "依字母順序 Z 到 A"
           }
-        },
-        {
+        }, {
           "value": "date",
           "label": {
             "de": "Datum, alt zu neu",
@@ -236,8 +232,7 @@
             "zh-CN": "日期从旧到新",
             "zh-TW": "日期 (從舊到新)"
           }
-        },
-        {
+        }, {
           "value": "date_reversed",
           "label": {
             "de": "Datum, neu zu alt",
@@ -253,8 +248,7 @@
           }
         }
       ]
-    },
-    {
+    }, {
       "type": "range",
       "id": "grid",
       "label": {
@@ -311,4 +305,5 @@
     }
   ]
 }
+
 {% endschema %}

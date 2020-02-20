@@ -6,6 +6,9 @@
   {% endif %}
 
   {% case section.settings.grid %}
+    {% when 1 %}
+      {%- assign max_height = 530 -%}
+      {%- assign grid_item_width = 'medium-up--one-whole' -%}
     {% when 2 %}
       {%- assign grid_item_width = 'medium-up--one-half' -%}
     {% when 3 %}
@@ -33,8 +36,8 @@
 </div>
 
 
-
 {% schema %}
+
 {
   "name": {
     "de": "Kategorien-Liste",
@@ -78,8 +81,7 @@
         "zh-CN": "产品系列列表",
         "zh-TW": "商品系列清單"
       }
-    },
-    {
+    }, {
       "type": "range",
       "id": "grid",
       "label": {
@@ -164,15 +166,14 @@
       "blocks": [
         {
           "type": "featured_collection"
-        },
-        {
+        }, {
           "type": "featured_collection"
-        },
-        {
+        }, {
           "type": "featured_collection"
         }
       ]
     }
   ]
 }
+
 {% endschema %}

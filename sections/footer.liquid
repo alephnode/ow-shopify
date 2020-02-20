@@ -49,18 +49,10 @@
 {%- endif -%}
 
 <style>
-  .site-footer__hr {
-    border-bottom: 1px solid {{ section.settings.color_footer_bg | color_darken: 10 }};
-  }
-
   .site-footer p,
   .site-footer h4,
   .site-footer small {
     color: {{ section.settings.color_footer_text }};
-  }
-
-  .site-footer {
-    background-color: {{ section.settings.color_footer_bg }};
   }
 
   .site-footer a:hover {
@@ -74,10 +66,9 @@
       {%- for block in section.blocks -%}
 
         <div class="site-footer__item
-                    {% if section.blocks.size == 1 %} site-footer__item--center{% endif %}
-                    {{ footer_item }}
-                    {% if block.type == 'newsletter' and section.blocks.size == 3 %}site-footer-newsletter__one-half{% endif %}"
-             {{ block.shopify_attributes }}>
+                              {% if section.blocks.size == 1 %} site-footer__item--center{% endif %}
+                              {{ footer_item }}
+                              {% if block.type == 'newsletter' and section.blocks.size == 3 %}site-footer-newsletter__one-half{% endif %}" {{ block.shopify_attributes }}>
           <div class="site-footer__item-inner site-footer__item-inner--{{ block.type }}">
 
             {%- if block.settings.title -%}
@@ -87,41 +78,28 @@
             {%- case block.type -%}
               {%- when 'newsletter' -%}
                 <div class="site-footer__newsletter
-                          {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
+                                              {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
                   {%- assign formId = 'ContactFooter' -%}
                   {% form 'customer', id: formId, novalidate: 'novalidate' %}
                     {%- if form.posted_successfully? -%}
-                      <p class="form-message form-message--success" tabindex="-1" data-form-status>
+                      <p class="form-message form-message--success" data-form-status tabindex="-1">
                         {{ 'general.newsletter_form.confirmation' | t }}
                       </p>
                     {%- endif -%}
-                    <input type="hidden" name="contact[tags]" value="newsletter">
+                    <input name="contact[tags]" type="hidden" value="newsletter">
                     <div class="input-group {% if form.errors %} input-group--error{% endif %}">
-                      <input type="email"
-                        name="contact[email]"
-                        id="{{ formId }}-email"
-                        class="input-group__field newsletter__input{% if form.errors %} input--error{% endif %}"
-                        value="{{ form.email }}"
-                        placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-                        aria-label="{{ 'general.newsletter_form.email_placeholder' | t }}"
-                        aria-required="true"
-                        required
-                        autocorrect="off"
-                        autocapitalize="off"
-                        {% if form.errors %}
-                          aria-invalid="true"
-                          aria-describedby="{{ formId }}-email-error"
-                          data-form-status
-                        {% endif %}>
+                      <input type="email" name="contact[email]" id="{{ formId }}-email" class="input-group__field newsletter__input{% if form.errors %} input--error{% endif %}" value="{{ form.email }}" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}" aria-label="{{ 'general.newsletter_form.email_placeholder' | t }}" aria-required="true" required autocorrect="off" autocapitalize="off" {% if form.errors %} aria-invalid="true" aria-describedby="{{ formId }}-email-error" data-form-status {% endif %}>
                       <span class="input-group__btn">
-                        <button type="submit" class="btn newsletter__submit" name="commit" id="Subscribe">
+                        <button class="btn newsletter__submit" id="Subscribe" name="commit" type="submit">
                           <span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>
                         </button>
                       </span>
                     </div>
                     {% if form.errors contains 'email' %}
                       <span id="{{ formId }}-email-error" class="input-error-message">
-                        {% include 'icon-error' %} {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.
+                        {% include 'icon-error' %}
+                        {{ form.errors.translated_fields['email'] | capitalize }}
+                        {{ form.errors.messages['email'] }}.
                       </span>
                     {% endif %}
                   {% endform %}
@@ -130,25 +108,23 @@
               {%- when 'text' -%}
                 {%- if block.settings.text != blank -%}
                   <div class="site-footer__rte
-                              {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
-                      {{ block.settings.text }}
+                                                    {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
+                    {{ block.settings.text }}
                   </div>
                 {%- endif -%}
 
               {%- when 'link_list' -%}
                 {%- assign footer_linklist = block.settings.menu -%}
-                  <ul class="site-footer__linklist
-                            {% if inline_list %}list--inline{% endif %}">
-                    {%- for link in linklists[footer_linklist].links -%}
-                      <li class="site-footer__linklist-item">
-                        <a href="{{ link.url }}"
-                          {% if link.current %} aria-current="page"{% endif %}
-                        >
-                          {{ link.title | escape }}
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
+                <ul class="site-footer__linklist
+                                                {% if inline_list %}list--inline{% endif %}">
+                  {%- for link in linklists[footer_linklist].links -%}
+                    <li class="site-footer__linklist-item">
+                      <a href="{{ link.url }}" {% if link.current %} aria-current="page" {% endif %}>
+                        {{ link.title | escape }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
 
             {%- endcase -%}
 
@@ -157,8 +133,6 @@
       {%- endfor -%}
     </div>
   </div>
-
-  <hr class="site-footer__hr">
 
   <div class="page-width">
     <div class="grid grid--no-gutters small--text-center">
@@ -240,9 +214,9 @@
           </ul>
         {%- else -%}
           <div class="small--hide">
-            <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}</small>
-            <small class="site-footer__copyright-content site-footer__copyright-content-powered-by">{{ powered_by_link }}</small>
-          </div>
+            <small class="site-footer__copyright-content">&copy;
+              {{ 'now' | date: "%Y" }},
+              {{ shop.name | link_to: '/' }}</small>
         {%- endif -%}
       </div>
 
@@ -263,7 +237,9 @@
         {% endif %}
       </div>
       <div class="grid__item{% unless social_icons %} medium-up--hide{% endunless %}">
-        <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}</small>
+        <small class="site-footer__copyright-content">&copy;
+          {{ 'now' | date: "%Y" }},
+          {{ shop.name | link_to: '/' }}</small>
         <small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small>
       </div>
     </div>
@@ -271,8 +247,8 @@
 </footer>
 
 
-
 {% schema %}
+
 {
   "name": {
     "de": "Fußzeile",
@@ -302,8 +278,7 @@
         "zh-CN": "支付方式",
         "zh-TW": "付款方式"
       }
-    },
-    {
+    }, {
       "type": "checkbox",
       "id": "show_payment_icons",
       "label": {
@@ -319,8 +294,7 @@
         "zh-TW": "顯示付款圖示"
       },
       "default": false
-    },
-    {
+    }, {
       "type": "header",
       "content": {
         "de": "Farbe",
@@ -334,8 +308,7 @@
         "zh-CN": "颜色",
         "zh-TW": "顏色"
       }
-    },
-    {
+    }, {
       "type": "color",
       "id": "color_footer_bg",
       "label": {
@@ -351,8 +324,7 @@
         "zh-TW": "背景"
       },
       "default": "#F5F5F5"
-    },
-    {
+    }, {
       "type": "color",
       "id": "color_footer_text",
       "label": {
@@ -413,8 +385,7 @@
             "zh-CN": "快速链接",
             "zh-TW": "快速連結"
           }
-        },
-        {
+        }, {
           "type": "link_list",
           "id": "menu",
           "label": {
@@ -432,8 +403,7 @@
           "default": "footer"
         }
       ]
-    },
-    {
+    }, {
       "type": "text",
       "name": {
         "de": "Text",
@@ -475,8 +445,7 @@
             "zh-CN": "谈论您的业务",
             "zh-TW": "描述您的商家"
           }
-        },
-        {
+        }, {
           "type": "richtext",
           "id": "text",
           "label": {
@@ -505,8 +474,7 @@
           }
         }
       ]
-    },
-    {
+    }, {
       "type": "newsletter",
       "limit": 1,
       "name": {
@@ -566,4 +534,5 @@
     }
   ]
 }
+
 {% endschema %}

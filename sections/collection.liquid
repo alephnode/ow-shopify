@@ -8,6 +8,9 @@
   {%- assign collection = collections[section.settings.collection] -%}
 
   {% case section.settings.grid %}
+    {% when 1 %}
+      {%- assign max_height = 530 -%}
+      {%- assign grid_item_width = 'medium-up--one-whole' -%}
     {% when 2 %}
       {%- assign max_height = 530 -%}
       {%- assign grid_item_width = 'medium-up--one-half' -%}
@@ -38,10 +41,12 @@
               <span class="visually-hidden">{{ 'homepage.onboarding.product_title' | t }}</span>
             </a>
             <div class="grid-view-item__image-wrapper">
-              {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+              {% capture current %}
+                {% cycle 1, 2, 3, 4, 5, 6 %}
+              {% endcapture %}
               {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
             </div>
-            <div class="h4 grid-view-item__title" aria-hidden="true">{{ 'homepage.onboarding.product_title' | t }}</div>
+            <div aria-hidden="true" class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
             {% include 'product-price' %}
           </div>
         </li>
@@ -50,7 +55,7 @@
   </ul>
 
   {% if section.settings.show_view_all %}
-    <hr class="hr--invisible" aria-hidden="true" />
+    <hr aria-hidden="true" class="hr--invisible"/>
     <div class="text-center">
       <a href="{{ collection.url }}" class="btn" aria-label="{{ 'collections.general.view_all_label' | t: collection_name: collection.title }}">
         {{ 'collections.general.view_all' | t }}
@@ -61,8 +66,8 @@
 </div>
 
 
-
 {% schema %}
+
 {
   "name": {
     "de": "Featured Kategorie",
@@ -105,8 +110,7 @@
         "zh-CN": "特色产品系列",
         "zh-TW": "精選商品系列"
       }
-    },
-    {
+    }, {
       "id": "collection",
       "type": "collection",
       "label": {
@@ -121,8 +125,7 @@
         "zh-CN": "收藏",
         "zh-TW": "商品系列"
       }
-    },
-    {
+    }, {
       "type": "range",
       "id": "grid",
       "label": {
@@ -141,8 +144,7 @@
       "max": 5,
       "step": 1,
       "default": 3
-    },
-    {
+    }, {
       "type": "range",
       "id": "rows",
       "label": {
@@ -161,8 +163,7 @@
       "max": 5,
       "step": 1,
       "default": 2
-    },
-    {
+    }, {
       "type": "checkbox",
       "id": "show_vendor",
       "label": {
@@ -178,8 +179,7 @@
         "zh-TW": "顯示產品廠商"
       },
       "default": false
-    },
-    {
+    }, {
       "type": "checkbox",
       "id": "show_view_all",
       "label": {
@@ -226,4 +226,5 @@
     }
   ]
 }
+
 {% endschema %}
