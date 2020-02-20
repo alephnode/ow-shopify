@@ -1,3 +1,3 @@
-# OW Shopify
+# Outlive Worldwide Shopify Store
 
-Info coming soon
+Repo for the Outlive Worldwide Shopify Store, based on the Debut theme.
