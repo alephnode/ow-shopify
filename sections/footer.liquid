@@ -47,7 +47,6 @@
 {%- else -%}
   {%- assign footer_text_color_hover = footer_text_color | color_darken: 10 -%}
 {%- endif -%}
-
 <style>
   .site-footer p,
   .site-footer h4,
@@ -71,6 +70,9 @@
 
   .product-single .grid__item, #customer_login label, #RegisterForm label {
    text-align: left; 
+  }
+  .product-single__thumbnails .grid__item:last-child {
+    margin-top: 0;
   }
 </style>
 
